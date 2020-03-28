@@ -117,6 +117,8 @@ class Assign(models.Model):
     class_id = models.ForeignKey(Class, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    start = models.CharField(null=True, max_length=15)  # input something like this 2020-1-1 which is yyyy-mm-dd
+    end = models.CharField(null=True, max_length=15)    # input something like this 2020-1-1 which is yyyy-mm-dd
 
     class Meta:
         unique_together = (('course', 'class_id', 'teacher'),)
@@ -273,8 +275,10 @@ days = {
 
 def create_attendance(sender, instance, **kwargs):
     if kwargs['created']:
-        start_date = date(2018, 8, 1)
-        end_date = date(2018, 11, 30)
+        s_string = instance.assign.start
+        e_string = instance.assign.end
+        start_date = date(*map(int, s_string.split('-'))) #date(2018, 8, 1)
+        end_date = date(*map(int, e_string.split('-')))  #date(2018, 11, 30)
         for single_date in daterange(start_date, end_date):
             if single_date.isoweekday() == days[instance.day]:
                 try:
