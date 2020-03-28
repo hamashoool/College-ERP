@@ -78,7 +78,7 @@ def t_student(request, assign_id):
 def t_class_date(request, assign_id):
     now = timezone.now()
     ass = get_object_or_404(Assign, id=assign_id)
-    att_list = ass.attendanceclass_set.filter(date__lte=now).order_by('-date')
+    att_list = ass.attendanceclass_set.all().order_by('date')
     return render(request, 'info/t_class_date.html', {'att_list': att_list})
 
 
