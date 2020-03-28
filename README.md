@@ -6,12 +6,23 @@ A college management system built using Django framework. It is designed for int
 Python and Django need to be installed
 
 ```bash
-pip install django
+> git clone THE LINK
+> cd CollegeERP
+> virtualenv env
+> pip install django
+> py manage.py makemigrations
+> py manage.py migrate
 ```
+instead of py you can also use `python`
 
 ## Usage
 
-Go to the College-ERP folder and run
+If you have done the above steps just type
+
+```bash
+python manage.py runserver
+```
+otherwise go to the College-ERP folder and run
 
 ```bash
 python manage.py runserver
