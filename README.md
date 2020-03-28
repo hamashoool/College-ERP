@@ -13,7 +13,7 @@ Python and Django need to be installed
 > py manage.py makemigrations
 > py manage.py migrate
 ```
-instead of py you can also use `python`
+instead of `py` you can also use `python`
 
 ## Usage
 
